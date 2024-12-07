@@ -44,7 +44,7 @@ public class OptionalClassExample {
 		System.out.println(country.orElse("No Country data available"));
 		System.out.println(emptyCountry.orElse("No Country data available"));
 		System.out.println(emptyCountry.orElseGet(()->"No Country data available"));
-		System.out.println(emptyCountry.orElseThrow(NoSuchElementException::new));
+		//System.out.println(emptyCountry.orElseThrow(NoSuchElementException::new));
 		
 		
 		
