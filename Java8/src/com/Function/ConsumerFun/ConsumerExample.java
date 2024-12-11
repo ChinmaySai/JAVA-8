@@ -6,7 +6,6 @@ import java.util.function.Consumer;
 public class ConsumerExample {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		Consumer<String> op= (name) ->System.out.println("Upper Case of the given String "+name.toUpperCase());
 		

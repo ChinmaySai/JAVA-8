@@ -7,6 +7,7 @@ public class SupplierExample {
 
 	public static void main(String args[])
 	{
+		
 		Supplier<Integer> month=() -> LocalDate.now().getMonthValue();
 		System.out.println("Current Month of the Year : "+month.get());
 		Supplier<Integer> day=() -> LocalDate.now().getDayOfYear();
