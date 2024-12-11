@@ -12,5 +12,4 @@ public class PredicateFunctionalLambda {
 		System.out.println(p1.test("Chinmay"));
 		System.out.println(p1.test("Sai"));
 	}
-
 }
