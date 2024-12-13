@@ -6,7 +6,6 @@ public class InstanceMethodReference {
 	public static void main(String[] args) {
 
 		
-		
 		InstanceMethodReference instanceMethodReference=new InstanceMethodReference();
 		//Static Method reference
 		ArithmeticOperation op1=instanceMethodReference::performMultiplication;
