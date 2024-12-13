@@ -10,7 +10,7 @@ public class ClassMethodReference {
 		list.forEach(department ->System.out.println(department));
 		System.out.println("Below output is printed with class Method reference");
 		list.forEach(System.out::println);//It is basically like For Consumer Functional 
-		                                   //interface we have given println() code and for that println method
+		                                   //interface we have given println() code functionality and for that println method
 		                                   //we gave list as input.
 	}
 
