@@ -8,6 +8,7 @@ public class StaticMethodReference {
 			int sum=num1+num2;
 			return sum;
 		};
+		
 		System.out.println(op.performOperation(6,8));
 		
 		//Static Method reference
