@@ -17,6 +17,11 @@ public class StreamMapOperationsExample {
 		System.out.println("Second Usage of map method of Stream API \n");
 		department.stream().map(text->text.toUpperCase()).map(text->"Department - > "+text).forEach(System.out::println);
 
+		System.out.println("Second Usage of map method of Stream API \n");
+		department.stream().map(text->text.toUpperCase()).map(text->"Department - > "+text).forEach(System.out::println);
+		System.out.println("Third Usage of map method of Stream API \n");
+		department.stream().map(text->text.toLowerCase()).map(text->"Department - > "+text).forEach(System.out::println);
+
 		
 		
 	}
