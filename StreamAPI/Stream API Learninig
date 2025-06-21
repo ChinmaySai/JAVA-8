@@ -1,0 +1,110 @@
+Stream is an interface provided as a part of java.util.stream package.
+
+Stream will not disturb the actual source objects.
+
+ Stream -----> Channel through which there is a free flow movement of data.
+ Streams
+ To process objects of the collection, in 1.8 version Streams concept introduced.
+ 
+What is the difference between collection and stream?
+ => If we want to represent a group of individual objects as a single entity then 
+We should go for collection.
+ => If we want to process a group of objects from the collection then we should go 
+for streams.
+
+Stream Initilazation :
+
+package com.stream.creation;
+
+import java.util.*;
+import java.util.stream.*;
+
+public class StreamCreation {
+
+	public static void main(String[] args) {
+		
+		//From Collection Object
+		List<String> values=List.of("One","Two","Three");
+		Stream<String> stream1=values.stream(); 
+		
+		//Creation from Array of Values
+		String names[]= {"One","Two","Third"};
+		Stream<String> stream2=Arrays.stream(names);
+		stream2.forEach(System.out::println);
+		
+		//Stream.Of() static  Method 
+		Stream<String> stream3=Stream.of("One","Two","Third");
+		
+          //Creating an Empty Stream
+		Stream<String> stream4=Stream.empty();
+	}
+
+}
+
+Stream Operations:
+Intermediate Operations
+Terminal Operations
+
+Stream Pipeline:
+
+In Java 8, the Stream API introduced a powerful way to process collections of data using a stream pipeline. A stream pipeline consists of three main components:
+
+Source: The data source (e.g., a collection, array, or I/O channel) that provides the elements to the stream.
+Intermediate Operations: Transformations applied to the stream, such as filtering, mapping, or sorting. These operations are lazy and do not execute until a terminal operation is invoked.
+Terminal Operation: The final operation that triggers the processing of the stream, such as collecting results, reducing, or iterating.
+
+When we call any of the intermediate operation it will always return a Stream of Objects.on Single Stream we can call any number of intermediate methods.
+
+Intermediate operations will be executed only when we invoke terminal operation.
+
+Terminal Operation:
+We can call have only one terminal operation on the stream instance.
+Once the terminal Operation is called we will get the result of the all the pipelined operations on the stream object.
+
+Map:
+package com.stream.operations;
+import java.util.*;
+import java.util.stream.*;
+
+public class StreamOperations {
+	
+	public static void main(String[] args) {
+		
+		List<Employee> employees=getEmployee();
+		List<String> empNames=new ArrayList<String>();
+		//Prior to Java 8
+		for(Employee emp:employees)
+		{
+			empNames.add(emp.getName());
+		}
+		empNames.forEach(n->System.out.println(n));
+		
+		//In Java8
+		Stream<Employee> streamEmployee=employees.stream();
+		List<String> empString=streamEmployee.map(emp->emp.getName()).collect(Collectors.toList());
+		System.out.println(empString);
+		
+		
+	}
+	
+	public static List<Employee> getEmployee()
+	{
+		//int id, String name, String city, int age, String gender, String department, int yearofJoining,
+		//double salary
+		List<Employee> employeeList=new ArrayList<>();
+		employeeList.add(new Employee(101, "Alice Johnson", "New York", 28, "Female", "HR", 2019, 60000));
+        employeeList.add(new Employee(102, "Bob Smith", "San Francisco", 32, "Male", "Engineering", 2017, 95000));
+        employeeList.add(new Employee(103, "Carol Danvers", "Los Angeles", 30, "Female", "Marketing", 2020, 72000));
+        employeeList.add(new Employee(104, "David Lee", "Chicago", 35, "Male", "Finance", 2015, 85000));
+        employeeList.add(new Employee(105, "Eva Green", "Seattle", 26, "Female", "Engineering", 2021, 68000));
+        employeeList.add(new Employee(106, "Frank Turner", "Boston", 29, "Male", "Sales", 2018, 62000));
+        employeeList.add(new Employee(107, "Grace Kim", "Austin", 31, "Female", "HR", 2016, 59000));
+        employeeList.add(new Employee(108, "Henry Walker", "Denver", 33, "Male", "IT", 2014, 98000));
+        employeeList.add(new Employee(109, "Isabel Torres", "Atlanta", 27, "Female", "Support", 2022, 50000));
+        employeeList.add(new Employee(110, "Jack Reed", "Miami", 36, "Male", "Legal", 2013, 88000));
+
+		return employeeList;
+	
+	}
+
+}
