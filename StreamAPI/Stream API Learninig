@@ -9,8 +9,7 @@ Stream will not disturb the actual source objects.
 What is the difference between collection and stream?
  => If we want to represent a group of individual objects as a single entity then 
 We should go for collection.
- => If we want to process a group of objects from the collection then we should go 
-for streams.
+ => If we want to process a group of objects from the collection then we should go for streams.
 
 Stream Initilazation :
 
@@ -108,3 +107,58 @@ public class StreamOperations {
 	}
 
 }
+
+Once a Stream Object is created we can process through Stream pipeline  only one time .
+
+
+map -- Functional interface
+filter -- Predicate interface
+forEach - Consumer interface
+anyMatch()-- Takes the Predicate interface -- Even if one of the stream Object matches it returns true.
+allMatch() -- Will be true only when all the Stream Objects matches.
+
+findAny() -- Returns an Optional describing some element of this stream, or anempty Optional if the stream is empty
+//findAny()
+	     //get any One value from out of All Values
+	     Employee emp=employees.stream().findAny()
+	    		 .get(); //On Optional we can apply get method 
+	     System.out.println(emp);
+
+//findFirst()
+	     //It always returns the First element of the Stream
+	    Employee emp1=employees.stream().findFirst().get();
+	    System.out.println(emp1);
+	
+//sorted() -- Sorts the Elements in Ascending Order
+	    //Get the Employees id's in sorted order
+	   List<Integer> sortedEmpids= employees.stream().map(emp2->emp2.getId()).sorted().collect(Collectors.toList());
+	   System.out.println("Sorted Empid's "+sortedEmpids);
+	   
+//Minimum Salary Employee Details
+         Employee empint= employees.stream().min((i1,i2) -> {return (int) (i1.getSalary()-i2.getSalary());}).get();	 
+         System.out.println("Minimum salaried Employee"+empint);
+ 
+mapToDouble returns DoubleStream -- DoubleStream contains only Double Values
+mapToInt returns IntStream
+mapToLong returns LongStream 
+
+average() will always return Optional Double
+
+//peek() -- Takes Consumer Function as an Input -- Takes the input but doesn't return any value
+peek can be mainly used to know what is the current status/trace of stream like what Objects will be passed to next Operation in the Stream Pipeline
+
+//peek()
+         System.out.println("**********Peek Method**********");
+         List<Employee> employeest=employees.stream().filter(emp5-> emp5.getYearofJoining()>2015).peek(System.out::println).collect(Collectors.toList());
+         
+         System.out.println("\n"+employeest); 
+		 
+		 
+When an stream() method is called it will create sequential from the Objects.
+	
+When an parallelStream() method is called it will create sequential from the Objects.
+when we create a stream with parallelStream internally stream will be divided into multiple sections.
+Internally the stream will be divided into multiple sections and operations will be performed on each of the sections simultaneoulsy buy mutiple Threads.
+parallelStream doesn't guarntee the order of elements but the processing will be faster when compared with the normal stream
+
+Collectors class is introduced as part of Java 8.Contains several utility methods using which we can perform several operations of the stream
